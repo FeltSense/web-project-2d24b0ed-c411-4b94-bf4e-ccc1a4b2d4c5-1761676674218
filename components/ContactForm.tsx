@@ -6,12 +6,12 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
@@ -94,7 +94,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="bg-slate-50 rounded-2xl p-8 lg:p-10">
+      <form onSubmit={handleSubmit} className="bg-slate-50 rounded-2xl p-8 lg:p-10">
         <div className="space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
@@ -167,7 +167,7 @@ export default function ContactForm() {
             Send Message
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </section>
